@@ -8,7 +8,7 @@ const io = require('socket.io')(http, {
 });
 
 // Usar el puerto asignado por el entorno o el 3000 por defecto
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000; // Render usa el 10000 por defecto
 
 io.on('connection', (socket) => {
     console.log('Jugador conectado:', socket.id);
@@ -28,6 +28,6 @@ io.on('connection', (socket) => {
     });
 });
 
-http.listen(PORT, () => {
+http.listen(PORT, '0.0.0.0', () => {
     console.log(`Servidor de señalización activo en puerto ${PORT}`);
 });
