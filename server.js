@@ -1,14 +1,21 @@
 // server.js
-const http = require('http').createServer();
-const io = require('socket.io')(http, {
+const http = require('http');
+
+// Creamos el servidor con una respuesta básica para el Health Check de Render
+const server = http.createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('Servidor de señalización funcionando correctamente');
+});
+
+const io = require('socket.io')(server, {
     cors: {
-        origin: "*", // Permite conexiones desde cualquier dominio (tu web)
+        origin: "*", 
         methods: ["GET", "POST"]
     }
 });
 
-// Usar el puerto asignado por el entorno o el 3000 por defecto
-const PORT = process.env.PORT || 10000; // Render usa el 10000 por defecto
+// Render usa el puerto 10000 por defecto
+const PORT = process.env.PORT || 10000;
 
 io.on('connection', (socket) => {
     console.log('Jugador conectado:', socket.id);
@@ -28,6 +35,7 @@ io.on('connection', (socket) => {
     });
 });
 
-http.listen(PORT, '0.0.0.0', () => {
+// IMPORTANTE: Escuchar en '0.0.0.0' para que Render detecte el puerto
+server.listen(PORT, '0.0.0.0', () => {
     console.log(`Servidor de señalización activo en puerto ${PORT}`);
 });
