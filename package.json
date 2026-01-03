@@ -1,15 +1,27 @@
 {
-  "name": "signaling-server",
+  "name": "pokemon-quetzal-netplay-server",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Servidor de señalización WebRTC para Pokémon Quetzal multijugador",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "pokemon",
+    "netplay",
+    "webrtc",
+    "socket.io"
+  ],
+  "author": "Jaykai2",
+  "license": "MIT",
   "dependencies": {
-    "socket.io": "^4.8.3"
+    "socket.io": "^4.5.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }
